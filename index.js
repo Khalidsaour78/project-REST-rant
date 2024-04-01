@@ -2,11 +2,14 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 
+app.set('view engine', 'jsx')
+app.engine('jsx', require('express-react-views').createEngine())
+
 //importing router
-app.use('/places', require('.controllers/places'))
+app.use('/places', require('./controllers/places'))
 
 app.get('/', (req, res) => {
-    res.send('Hello world!')
+    res.render('home')
 })
 
 //making a route with wildcard operator
