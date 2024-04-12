@@ -6,7 +6,7 @@ router.get('/new', (req, res) => {
 
 //GET /places
 router.get('/', (req, res) => {
-    let places = [{
+    let places = [/*{
         name: 'H-Thai-ML',
         city: 'Seattle',
         state: 'WA',
@@ -18,8 +18,8 @@ router.get('/', (req, res) => {
         state: 'AZ',
         cuisines: 'Coffee, Bakery',
         pic: '/images/coding-cat-cafe.jpg'
-      }]
-      
+      }*/]
+    //console.log(req.body)  
     res.render('places/index', { places })//passing the places array into the render method
 
 })
