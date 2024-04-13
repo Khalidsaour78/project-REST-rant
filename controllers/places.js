@@ -40,9 +40,18 @@ router.put("/:id", (req, res) => {
   res.send("Update a particular place");
 });
 
-router.get("/:id/edit", (req, res) => {
-  res.send("Form page for editing an existing place");
-});
+router.get('/:id/edit', (req, res) => {
+  let id = Number(req.params.id)
+  if (isNaN(id)) {
+      res.render('error404')
+  }
+  else if (!places[id]) {
+      res.render('error404')
+  }
+  else {
+    res.render('places/edit', { place: places[id] })
+  }
+})
 
 router.delete('/:id', (req, res) => {
   let id = Number(req.params.id)
@@ -65,4 +74,7 @@ router.post("/:id/rant", (req, res) => {
 router.delete("/:id/rant/:rantId", (req, res) => {
   res.send("Delete a rant (comment) about a particular place");
 });
+
+
+
 module.exports = router
