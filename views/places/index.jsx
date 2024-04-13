@@ -3,10 +3,14 @@ const Def = require('../default')//import the default function
 
 //creating the index stub function with def component as wrapper
 function index (data) {
-    let placesFormatted = data.places.map((place) => {
+    let placesFormatted = data.places.map((place, index) => {
       return (
         <div className="col-sm-6">
-          <h2>{place.name}</h2>
+          <h2>
+            <a href={`/places/${index}`}>
+              {place.name}
+            </a>
+          </h2>
           <p className='text-center'>
             {place.cuisines}
           </p>
