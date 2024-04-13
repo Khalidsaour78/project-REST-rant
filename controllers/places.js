@@ -6,7 +6,6 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
- // console.log(req.body)
   if (!req.body.pic) {
     // Default image in case one is not provided
     req.body.pic = 'http://placekitten.com/400/400'
@@ -17,6 +16,7 @@ router.post('/', (req, res) => {
   if (!req.body.state) {
     req.body.state = 'USA'//Default state
   }
+  console.log(req.body)
   places.push(req.body)
   res.redirect('/places')
 })
@@ -33,11 +33,16 @@ router.get('/:id', (req, res) => {
     res.render('error404')
   }
   else {
-
     res.render('places/show', { place: places[id], id })
-
   }
 })
+router.put("/:id", (req, res) => {
+  res.send("Update a particular place");
+});
+
+router.get("/:id/edit", (req, res) => {
+  res.send("Form page for editing an existing place");
+});
 
 router.delete('/:id', (req, res) => {
   let id = Number(req.params.id)
@@ -53,4 +58,11 @@ router.delete('/:id', (req, res) => {
   }
 })
 
+router.post("/:id/rant", (req, res) => {
+  res.send("Create a rant (comment) about a particular place");
+});
+
+router.delete("/:id/rant/:rantId", (req, res) => {
+  res.send("Delete a rant (comment) about a particular place");
+});
 module.exports = router
